@@ -1,0 +1,36 @@
+{
+  "name": "boxoffice",
+  "version": "0.0.0",
+  "description": "Automated movie downloader for torrents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "movie",
+    "torrent",
+    "downloader"
+  ],
+  "author": "m4tta <matt@fizzled.me>",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
+    "babel-register": "^6.23.0",
+    "superagent": "^3.4.3"
+  },
+  "devDependencies": {
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "index.js"
+    ],
+    "rules": {
+      "camelcase": 0
+    }
+  }
+}

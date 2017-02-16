@@ -1,0 +1,13 @@
+{
+  "base_url": "https://yts.ag/api/v2/",
+  "methods": {
+    "movie": {
+      "List": { "resource": "list_movies.json", "method": "get"},
+      "Details": { "resource": "movie_details.json", "method": "get"},
+      "Suggestion": { "resource": "movie_suggestions.json", "method": "get"},
+      "Comments": { "resource": "movie_comments.json", "method": "get"},
+      "Reviews": { "resource": "movie_reviews.json", "method": "get"},
+      "ParentalGuides": { "resource": "movie_parental_guides.json", "method": "get"}
+    }
+  }
+}
