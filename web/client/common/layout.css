@@ -1,0 +1,27 @@
+@import "../vars.css";
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../assets/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../assets/fonts/OpenSans-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+:global {
+  body {
+    box-sizing: border-box;
+    background-color: $base;
+    color: white;
+    font-family: "Open Sans";
+    font-size: 14px;
+  }
+}
+
+.layout {
+  max-width: 1024px;
+  margin: auto;
+}
