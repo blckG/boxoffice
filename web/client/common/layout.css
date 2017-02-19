@@ -12,8 +12,11 @@
 }
 
 :global {
-  body {
+  * {
     box-sizing: border-box;
+  }
+
+  body {
     background-color: $base;
     color: white;
     font-family: "Open Sans";
