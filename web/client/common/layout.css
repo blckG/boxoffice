@@ -14,17 +14,23 @@
 :global {
   * {
     box-sizing: border-box;
+    color: white;
+    font-family: "Open Sans";
+    font-size: 14px;
   }
 
   body {
     background-color: $base;
-    color: white;
-    font-family: "Open Sans";
-    font-size: 14px;
   }
 }
 
 .layout {
   max-width: 1024px;
   margin: auto;
+}
+
+.header {
+  text-align: center;
+  font-size: 100px;
+  color: $green;
 }

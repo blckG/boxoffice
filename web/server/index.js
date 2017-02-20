@@ -26,7 +26,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 // API endpoints
 app.use('/api', require('./api/wanted').default);
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 

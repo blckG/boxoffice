@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
+/* global document */
+import React from 'react';
 import {render} from 'react-dom';
 import {Router, IndexRoute, Route, Redirect, browserHistory} from 'react-router';
 
-import Layout from './common/Layout';
-import Wanted from './pages/wanted/WantedComponent';
+import Layout from './common/layout';
+import Wanted from './pages/wanted/wanted';
 
 const router = (
   <Router history={browserHistory}>
     <Route path="/" component={Layout}>
-      <IndexRoute component={Wanted} />
+      <IndexRoute component={Wanted}/>
       <Redirect from="*" to="/"/>
     </Route>
   </Router>

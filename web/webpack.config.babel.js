@@ -7,7 +7,7 @@ const APP_DIR = path.resolve(__dirname, 'client/');
 const config = {
   entry: [
     'webpack-hot-middleware/client',
-    // 'whatwg-fetch',
+    'whatwg-fetch',
     path.resolve(APP_DIR, 'app.js')
   ],
   output: {
@@ -50,9 +50,10 @@ const config = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: function () {
+              plugins: () => {
                 return [
                   require('precss'),
+                  require('rucksack-css'),
                   require('autoprefixer')({browsers: ['last 2 versions']})
                 ];
               }

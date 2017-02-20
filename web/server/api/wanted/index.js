@@ -1,6 +1,7 @@
 import express from 'express';
 import * as controller from './wanted.controller';
-const router = express.Router();
+
+const router = new express.Router();
 
 router.get('/wanted', controller.listWanted);
 router.post('/wanted/add', controller.addWanted);
