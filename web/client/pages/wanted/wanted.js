@@ -31,7 +31,7 @@ class Wanted extends Component {
     const wanted = this.props.wanted.map((movie, index) => {
       return (
         <div key={index} className={style.wanted_item}>
-          <span className={style.movie}>{movie.title}</span>
+          <span className={style.movie}><a href={`http://imdb.com/title/${movie.imdbId}/reference`}>{movie.title}</a></span>
           <span className={style.quality}>{movie.quality}</span>
           <span className={style.size}>{movie.torrent ? movie.torrent.size : ''}</span>
           <div className={style.status}>
