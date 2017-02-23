@@ -5,6 +5,7 @@ import webpack from 'webpack';
 const APP_DIR = path.resolve(__dirname, 'client/');
 
 const config = {
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     'whatwg-fetch',

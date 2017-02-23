@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import config from '../webpack.config.babel';
+import Emitter from '../../lib/events';
 
 const app = express();
 

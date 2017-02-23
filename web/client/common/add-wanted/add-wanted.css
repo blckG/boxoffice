@@ -53,12 +53,13 @@ $width: 400px;
 
 .results {
   position: absolute;
-  top: 52px;
+  top: 53px;
   width: $width;
   border: 1px solid rgba(0,0,0,0.6);
   margin-top: -1px;
   /*border-radius: 0 0 4px 4px;*/
   background-color: $base-light;
+  border-top: none;
 
   .-loading {
     min-height: 200px;

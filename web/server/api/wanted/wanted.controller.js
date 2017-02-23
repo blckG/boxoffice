@@ -10,13 +10,14 @@ export async function addWanted(req, res) {
       await wanted.push()
       .push({
         title: req.body.title,
+        quality: req.body.quality,
         imdbId: req.body.imdbId
       })
       .last()
       .write();
-    return res.status(200).send(movie);
+    return res.status(200).send({success: true, movie});
   }
-  return res.status(409).send({error: 'Movie already in wanted list'});
+  return res.status(409).send({success: false, error: 'Movie already in wanted list'});
 }
 
 export function removeWanted(req, res) {

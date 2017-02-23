@@ -23,7 +23,7 @@ class ProgressBar extends Component {
     };
 
     return (
-      <div style={bgStyle}>
+      <div title={`${currentWidthPercent.toFixed(2)}%`} style={bgStyle}>
         <div style={fgStyle}/>
       </div>
     );

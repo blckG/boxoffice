@@ -1,13 +1,50 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import ProgressBar from '../../common/progress-bar';
+import * as WantedActions from '../../actions/wanted';
+
+import ProgressBar from '../../common/progress-bar/progress-bar';
 import AddWanted from '../../common/add-wanted/add-wanted';
 
 import style from './wanted.css';
 
 class Wanted extends Component {
+  constructor(props) {
+    super(props);
+
+    this.props.getWanted();
+  }
+
+  componentDidMount() {
+    const intervalId = setInterval(() => {
+      this.props.getWanted();
+    }, 3000);
+    this.setState({intervalId});
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
 
   render() {
+    const wanted = this.props.wanted.map((movie, index) => {
+      return (
+        <div key={index} className={style.wanted_item}>
+          <span className={style.movie}>{movie.title}</span>
+          <span className={style.quality}>{movie.quality}</span>
+          <span className={style.size}>{movie.torrent ? movie.torrent.size : ''}</span>
+          <div className={style.status}>
+            {
+              movie.torrentStatus ?
+              (<ProgressBar current={movie.torrentStatus.total_done} total={movie.torrentStatus.total_wanted} bgColor="#C4C4C4" fgColor="#2D9CDB" completeColor="#27AE60"/>) :
+              'queued'
+            }
+          </div>
+        </div>
+      );
+    });
+
     return (
       <div>
         <AddWanted/>
@@ -19,46 +56,7 @@ class Wanted extends Component {
             <span className={style.status}>Status</span>
           </div>
           <div>
-            <div className={style.wanted_item}>
-              <span className={style.movie}>Moana</span>
-              <span className={style.quality}>1080p</span>
-              <span className={style.size}>1.42GB</span>
-              <div className={style.status}>
-                <ProgressBar current={100} total={100} bgColor="#C4C4C4" fgColor="#2D9CDB" completeColor="#27AE60"/>
-              </div>
-            </div>
-            <div className={style.wanted_item}>
-              <span className={style.movie}>Manchester by the Sea</span>
-              <span className={style.quality}>1080p</span>
-              <span className={style.size}>2.08GB</span>
-              <div className={style.status}>
-                <ProgressBar current={75} total={100} bgColor="#C4C4C4" fgColor="#2D9CDB" completeColor="#27AE60"/>
-              </div>
-            </div>
-            <div className={style.wanted_item}>
-              <span className={style.movie}>Moana</span>
-              <span className={style.quality}>720p</span>
-              <span className={style.size}>724MB</span>
-              <div className={style.status}>
-                <ProgressBar current={50} total={100} bgColor="#C4C4C4" fgColor="#2D9CDB" completeColor="#27AE60"/>
-              </div>
-            </div>
-            <div className={style.wanted_item}>
-              <span className={style.movie}>X-Men: Apocalypse</span>
-              <span className={style.quality}>1080p</span>
-              <span className={style.size}>1.42GB</span>
-              <div className={style.status}>
-                <ProgressBar current={25} total={100} bgColor="#C4C4C4" fgColor="#2D9CDB" completeColor="#27AE60"/>
-              </div>
-            </div>
-            <div className={style.wanted_item}>
-              <span className={style.movie}>Moana</span>
-              <span className={style.quality}>1080p</span>
-              <span className={style.size}>1.42GB</span>
-              <div className={style.status}>
-                unavailable
-              </div>
-            </div>
+            {wanted}
           </div>
         </div>
       </div>
@@ -67,4 +65,21 @@ class Wanted extends Component {
 
 }
 
-export default Wanted;
+Wanted.propTypes = {
+  wanted: PropTypes.array.isRequired,
+  getWanted: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    wanted: state.wanted
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    ...bindActionCreators({...WantedActions}, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wanted);

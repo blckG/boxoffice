@@ -1,5 +1,3 @@
-/* global fetch */
-
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import FA from 'font-awesome/css/font-awesome.css';
@@ -18,16 +16,25 @@ class AddWanted extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.resetSearch();
   }
 
   handleChange(e) {
     this.setState({searchQuery: e.target.value}, () => {
       if (this.state.searchQuery.length >= 2) {
         this.getPossibleMovies(this.state.searchQuery);
-      } else {
-        this.setState({results: []});
+      } else if (this.state.searchQuery.length === 0) {
+        this.resetSearch();
       }
     });
+  }
+
+  resetSearch() {
+    this.setState({searchQuery: '', results: []});
   }
 
   getPossibleMovies(q) {
@@ -51,7 +58,11 @@ class AddWanted extends Component {
               [style.__active]: this.state.searchQuery
             })}
             />
-          <span className={classnames(style.icon, FA.fa, FA['fa-times'], FA['fa-2x'])} aria-hidden="true"/>
+          <span
+            onClick={this.handleClick}
+            className={classnames(style.icon, FA.fa, FA['fa-times'], FA['fa-2x'])}
+            aria-hidden="true"
+            />
         </div>
         <ResultsList list={this.state.results}/>
       </div>
