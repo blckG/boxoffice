@@ -14,7 +14,7 @@ class ResultsList extends Component {
     this.itemClicked = this.itemClicked.bind(this);
   }
 
-  itemClicked(id) {
+  itemClicked(id, quality) {
     const API_KEY = '17c5a1d1fe283613b578056b9ee0b521';
     fetch(`http://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
       .then(res => res.json())
@@ -26,7 +26,7 @@ class ResultsList extends Component {
           },
           body: JSON.stringify({
             title: movie.title,
-            quality: '1080p',
+            quality,
             imdbId: movie.imdb_id
           })
         })

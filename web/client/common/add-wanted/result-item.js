@@ -15,9 +15,12 @@ class ResultItem extends Component {
   }
 
   handleClick() {
-    console.log(this);
     this.setState({open: true});
-    // this.props.handleClick(this.props.movie.id);
+  }
+
+  handleQualitySelect(quality) {
+    this.setState({open: false});
+    this.props.handleClick(this.props.movie.id, quality);
   }
 
   render() {
@@ -31,8 +34,14 @@ class ResultItem extends Component {
         {img}
         <div className={classnames(style.container, style.options)}>
           <div>
-            <span className={style.quality_select} >720p</span>
-            <span className={style.quality_select} >1080p</span>
+            <span
+              className={style.quality_select}
+              onClick={this.handleQualitySelect.bind(this, '720p')}
+              >720p</span>
+            <span
+              className={style.quality_select}
+              onClick={this.handleQualitySelect.bind(this, '1080p')}
+              >1080p</span>
           </div>
         </div>
         <div onClick={this.handleClick} className={classnames(style.container, style.text, {[style.__open]: this.state.open})}>

@@ -85,7 +85,7 @@ $width: 400px;
     }
 
     &.__open {
-      transform: translateX(101%) rotateZ(360deg);
+      transform: translateX(101%);
       opacity: 0;
       visibility: hidden;
     }
