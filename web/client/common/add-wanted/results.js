@@ -34,6 +34,8 @@ class ResultsList extends Component {
         .then(json => {
           if (json.success) {
             this.props.toast(`${movie.title} added.`);
+          } else {
+            this.props.toast(`Movie already in queue`, 'error');
           }
         });
       });

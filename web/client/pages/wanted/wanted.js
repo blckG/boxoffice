@@ -37,7 +37,13 @@ class Wanted extends Component {
           <div className={style.status}>
             {
               movie.torrentStatus ?
-              (<ProgressBar current={movie.torrentStatus.total_done} total={movie.torrentStatus.total_wanted} bgColor="#C4C4C4" fgColor="#2D9CDB" completeColor="#27AE60"/>) :
+              (<ProgressBar
+                current={movie.torrentStatus.total_done}
+                total={movie.torrentStatus.total_wanted}
+                bgColor="#C4C4C4"
+                fgColor="#2D9CDB"
+                completeColor="#27AE60"
+                />) :
               'queued'
             }
           </div>
