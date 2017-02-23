@@ -1,4 +1,5 @@
 import {wanted} from '../../../../lib/db';
+import Emitter from '../../../../lib/events';
 
 export function listWanted(req, res) {
   return res.status(200).send(wanted.value());
@@ -15,9 +16,10 @@ export async function addWanted(req, res) {
       })
       .last()
       .write();
+    Emitter.emit('scan:single', movie);
     return res.status(200).send({success: true, movie});
   }
-  return res.status(409).send({success: false, error: 'Movie already in wanted list'});
+  return res.status(200).send({success: false, error: 'Movie already in wanted list'});
 }
 
 export function removeWanted(req, res) {
