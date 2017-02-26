@@ -1,4 +1,5 @@
 import path from 'path';
+import http from 'http';
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
@@ -7,6 +8,8 @@ import config from '../webpack.config.babel';
 import Emitter from '../../lib/events';
 
 const app = express();
+const server = http.createServer(app);
+require('./socket')(server);
 
 const PORT = process.env.PORT || 1337;
 
@@ -31,6 +34,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Boxoffice running on port ${PORT}`);
 });

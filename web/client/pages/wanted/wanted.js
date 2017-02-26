@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
 import * as WantedActions from '../../actions/wanted';
 
 import ProgressBar from '../../common/progress-bar/progress-bar';
@@ -16,19 +15,8 @@ class Wanted extends Component {
     this.props.getWanted();
   }
 
-  componentDidMount() {
-    const intervalId = setInterval(() => {
-      this.props.getWanted();
-    }, 3000);
-    this.setState({intervalId});
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.state.intervalId);
-  }
-
   render() {
-    const wanted = this.props.wanted.map((movie, index) => {
+    const wanted = this.props.wantedList.map((movie, index) => {
       return (
         <div key={index} className={style.wanted_item}>
           <span className={style.movie}><a href={`http://imdb.com/title/${movie.imdbId}/reference`}>{movie.title}</a></span>
@@ -72,13 +60,13 @@ class Wanted extends Component {
 }
 
 Wanted.propTypes = {
-  wanted: PropTypes.array.isRequired,
+  wantedList: PropTypes.array.isRequired,
   getWanted: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    wanted: state.wanted
+    wantedList: state.wanted
   };
 }
 
