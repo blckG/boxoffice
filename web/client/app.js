@@ -4,14 +4,15 @@ import {Router, IndexRoute, Route, Redirect, browserHistory} from 'react-router'
 import {syncHistoryWithStore} from 'react-router-redux';
 import {Provider} from 'react-redux';
 
-import socketio from './lib/socket';
+import {storeListners} from './lib/socket';
 import configureStore from './store';
 
 import Layout from './common/layout';
 import Wanted from './pages/wanted/wanted';
+import Settings from './pages/settings/settings';
 
 const store = configureStore();
-const io = socketio(store);
+storeListners(store);
 const history = syncHistoryWithStore(browserHistory, store);
 
 const router = (
@@ -19,6 +20,7 @@ const router = (
     <Router history={history}>
       <Route path="/" component={Layout}>
         <IndexRoute component={Wanted}/>
+        <Route path="/settings" component={Settings}/>
         <Redirect from="*" to="/"/>
       </Route>
     </Router>

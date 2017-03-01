@@ -14,6 +14,7 @@ class ResultsList extends Component {
     this.itemClicked = this.itemClicked.bind(this);
   }
 
+  // TODO: move this to a wanted action
   itemClicked(id, quality) {
     const API_KEY = '17c5a1d1fe283613b578056b9ee0b521';
     fetch(`http://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)

@@ -3,15 +3,19 @@ import * as WantedActions from '../actions/wanted';
 
 const socket = io('http://localhost:1337');
 
-export default function (store) {
+export function storeListners(store) {
   const {dispatch, getState} = store;
-
-  // poll the server for the list of wanted movies
-  setInterval(() => {
-    socket.emit('wanted:all', data => {
-      dispatch(WantedActions.wanted(data));
-    });
-  }, 1000);
 
   return socket;
 }
+
+export function getAllWanted(cb) {
+  socket.emit('wanted:all', data => {
+    if (data) {
+      return cb(null, data);
+    }
+    return cb('error: no data');
+  });
+}
+
+export default socket;

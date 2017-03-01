@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as WantedActions from '../../actions/wanted';
+import * as socket from '../../lib/socket';
 
 import ProgressBar from '../../common/progress-bar/progress-bar';
 import AddWanted from '../../common/add-wanted/add-wanted';
@@ -13,6 +14,22 @@ class Wanted extends Component {
     super(props);
 
     this.props.getWanted();
+  }
+
+  componentDidMount() {
+    const intervalId = setInterval(() => {
+      // poll the server for the list of wanted movies
+      socket.getAllWanted((err, data) => {
+        if (!err) {
+          this.props.dispatch(WantedActions.wanted(data));
+        }
+      });
+    }, 1000);
+    this.setState({intervalId});
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
   }
 
   render() {
@@ -61,7 +78,8 @@ class Wanted extends Component {
 
 Wanted.propTypes = {
   wantedList: PropTypes.array.isRequired,
-  getWanted: PropTypes.func.isRequired
+  getWanted: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -72,7 +90,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    ...bindActionCreators({...WantedActions}, dispatch)
+    ...bindActionCreators({...WantedActions}, dispatch),
+    dispatch
   };
 }
 

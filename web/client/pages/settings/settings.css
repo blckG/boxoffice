@@ -1,0 +1,82 @@
+@import "../../vars.css";
+
+.container {
+  background-color: $base-light;
+  border-radius: 4px;
+  padding: 20px;
+
+  .header {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 24px;
+  }
+}
+
+.input_group {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid $grey;
+
+  label {
+    margin-right: 10px;
+    min-width: 150px;
+  }
+
+  input {
+    color: #ddd;
+    width: 100%;
+    min-width: 200px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: $base;
+    border: 1px solid $grey;
+
+    &:focus {
+      border: 1px solid $grey-light;
+    }
+  }
+}
+
+.button_group {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 10px;
+
+  button:not(:first-child) {
+    margin-left: 5px;
+  }
+
+  .__save {
+    color: #fff;
+    background-color: $blue;
+    box-shadow: 0 4px #215884;
+
+    &:hover {
+      background-color: #2b88bc;
+    }
+
+    &:active {
+      background-color: #2b88bc;
+      box-shadow: 0 2px #215884;
+    }
+  }
+
+  .__reset {
+    color: #fff;
+    background-color: $orange;
+    box-shadow: 0 4px #a43b33;
+
+    &:hover {
+      background-color: #f05337;
+    }
+
+    &:active {
+      background-color: #f05337;
+      box-shadow: 0 2px #a43b33;
+    }
+  }
+}
