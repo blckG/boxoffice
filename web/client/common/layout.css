@@ -40,6 +40,10 @@
       background-color: #bfbfc3;
     }
 
+    &:focus {
+      outline: none;
+    }
+
     &:active {
       background-color: #bfbfc3;
       box-shadow: 0 2px $grey;
@@ -82,7 +86,7 @@
     }
 
     a:not(:first-child) {
-      margin-left: 5px;
+      margin-left: 15px;
     }
   }
 }
