@@ -6,7 +6,6 @@ export function getSettings(req, res) {
 }
 
 export async function setSettings(req, res) {
-  console.log(req.body);
   const s = await settings.assign(req.body).write();
   return res.status(200).send({success: true, settings: s});
 }

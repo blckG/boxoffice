@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import * as WantedActions from '../actions/wanted';
 
-const socket = io('http://localhost:1337');
+const socket = io();
 
 export function storeListners(store) {
   const {dispatch, getState} = store;
