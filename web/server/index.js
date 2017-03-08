@@ -5,11 +5,11 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import config from '../webpack.config.babel';
-import Emitter from '../../lib/events';
 
 const app = express();
 const server = http.createServer(app);
-require('./socket')(server);
+require('../../lib/socket')(server); // this line needs to get executed before things that consume the sockets
+require('../../lib/events');
 
 const PORT = process.env.PORT || 1337;
 
