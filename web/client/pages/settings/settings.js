@@ -13,6 +13,7 @@ class Settings extends Component {
     this.state = {
       dlPath: '',
       completedPath: '',
+      label: '',
       moviesPath: ''
     };
 
@@ -34,6 +35,7 @@ class Settings extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       dlPath: nextProps.settings.dlPath,
+      label: nextProps.settings.label,
       completedPath: nextProps.settings.completedPath,
       moviesPath: nextProps.settings.moviesPath
     });
@@ -61,6 +63,10 @@ class Settings extends Component {
         <div className={style.input_group}>
           <label htmlFor="moviesPath">Movies Path</label>
           <input onChange={this.handleChange} type="text" id="moviesPath" value={this.state.moviesPath}/>
+        </div>
+        <div className={style.input_group}>
+          <label htmlFor="label">label</label>
+          <input onChange={this.handleChange} type="text" id="label" value={this.state.label}/>
         </div>
         <div className={style.button_group}>
           <button onClick={this.handleReset} className={style.__reset}>Reset Unsaved</button>
