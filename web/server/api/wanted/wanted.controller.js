@@ -23,9 +23,9 @@ export async function addWanted(req, res) {
 }
 
 export function removeWanted(req, res) {
-  // TODO: add optiont to also remove from torrent client
   const movie = wanted.remove({imdbId: req.body.imdbId})
         .last()
         .write();
+  Emitter.emit('wanted:remove', movie, removeData);
   return res.status(200).send(movie || 'Nothing matching that imdbId');
 }

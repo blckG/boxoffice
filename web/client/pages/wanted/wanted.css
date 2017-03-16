@@ -62,10 +62,14 @@
   right: -30px;
   color: #ff5538;
   cursor: pointer;
-  opacity: .5;
+  opacity: 0;
   transition: opacity .125s;
 
   &:hover {
-    opacity: 1;
+    opacity: 1 !important;
   }
+}
+
+.wanted_item:hover .icon {
+  opacity: 0.5;
 }
