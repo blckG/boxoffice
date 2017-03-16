@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import classnames from 'classnames';
+import FA from 'font-awesome/css/font-awesome.css';
 import * as WantedActions from '../../actions/wanted';
 import * as socket from '../../lib/socket';
 
@@ -32,6 +34,10 @@ class Wanted extends Component {
     clearInterval(this.state.intervalId);
   }
 
+  handleClick(imdbId) {
+    this.props.removeWanted(imdbId);
+  }
+
   render() {
     const wanted = this.props.wantedList.map((movie, index) => {
       return (
@@ -52,6 +58,11 @@ class Wanted extends Component {
               'queued'
             }
           </div>
+          <span
+            onClick={this.handleClick.bind(this, movie.imdbId)}
+            className={classnames(style.icon, FA.fa, FA['fa-times'], FA['fa-2x'])}
+            aria-hidden="true"
+            />
         </div>
       );
     });

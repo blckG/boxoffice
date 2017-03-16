@@ -23,6 +23,7 @@ export async function addWanted(req, res) {
 }
 
 export function removeWanted(req, res) {
+  // TODO: add optiont to also remove from torrent client
   const movie = wanted.remove({imdbId: req.body.imdbId})
         .last()
         .write();

@@ -53,6 +53,7 @@ $width: 400px;
 
 .results {
   position: absolute;
+  z-index: 1;
   top: 53px;
   width: $width;
   border: 1px solid rgba(0,0,0,0.6);
