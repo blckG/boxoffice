@@ -35,7 +35,8 @@ class Wanted extends Component {
   }
 
   handleClick(imdbId) {
-    this.props.removeWanted(imdbId);
+    // TODO: create custom confirmation modal
+    this.props.removeWanted(imdbId, confirm('Remove torrent data?'));
   }
 
   render() {

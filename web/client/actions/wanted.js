@@ -8,14 +8,14 @@ export function getWanted() {
   };
 }
 
-export function removeWanted(imdbId) {
+export function removeWanted(imdbId, removeData) {
   return dispatch => {
     fetch('/api/wanted/remove', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({imdbId})
+      body: JSON.stringify({imdbId, removeData})
     })
     .then(res => res.json())
     .then(json => {

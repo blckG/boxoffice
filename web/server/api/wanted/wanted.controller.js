@@ -26,6 +26,6 @@ export function removeWanted(req, res) {
   const movie = wanted.remove({imdbId: req.body.imdbId})
         .last()
         .write();
-  Emitter.emit('wanted:remove', movie, removeData);
+  Emitter.emit('wanted:remove', movie, req.body.removeData);
   return res.status(200).send(movie || 'Nothing matching that imdbId');
 }
