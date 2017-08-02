@@ -8,7 +8,7 @@ export function storeListners(store) {
   const {dispatch, getState} = store;
 
   socket.on('toaster:toast', (message, type, delay) => {
-  dispatch(toast(message, type, delay));
+    dispatch(toast(message, type, delay));
   });
 
   return socket;

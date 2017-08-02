@@ -11,6 +11,7 @@ class Settings extends Component {
     super(props);
 
     this.state = {
+      torrentClientAddress: '',
       dlPath: '',
       completedPath: '',
       label: '',
@@ -34,6 +35,7 @@ class Settings extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
+      torrentClientAddress: nextProps.settings.torrentClientAddress,
       dlPath: nextProps.settings.dlPath,
       label: nextProps.settings.label,
       completedPath: nextProps.settings.completedPath,
@@ -52,6 +54,10 @@ class Settings extends Component {
     return (
       <div className={style.container}>
         <div className={style.header}>Settings</div>
+        <div className={style.input_group}>
+          <label htmlFor="torrentClientAddress">Torrent Client Address</label>
+          <input onChange={this.handleChange} type="text" id="torrentClientAddress" value={this.state.torrentClientAddress}/>
+        </div>
         <div className={style.input_group}>
           <label htmlFor="dlPath">Download Path</label>
           <input onChange={this.handleChange} type="text" id="dlPath" value={this.state.dlPath}/>
